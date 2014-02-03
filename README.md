@@ -43,7 +43,7 @@ $ node loadData.js testdata.json
 
 ## Query
 
-Search for
+Get locations for:
 
 * a user
 * a group
