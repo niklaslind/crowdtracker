@@ -3,7 +3,7 @@
 Track movement of groups of people:
 
 * User : An individual user moving in a group
-* Group: A group of people
+* Group: A group of users
 * Location: A sampled user position represented by [geoJson](http://geojson.org/)
 * Area: Show user locations within an geoJson polygon as described in [mongoDB](http://docs.mongodb.org/manual/core/2dsphere/)
 
