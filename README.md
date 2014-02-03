@@ -16,7 +16,7 @@ Track movement of groups of people:
 Install node packages:
 
 ```
-$ npn install
+$ npm install
 ```
 
 
@@ -35,9 +35,29 @@ $ nodemon app.js
 ## Load testdata
 
 ```
-$ cd  
+$ cd testdata
+$ npm install
+$ node loadData.js testdata.json
 ```
 
 
 ## Query
+
+Search for
+
+* a user
+* a group
+* within an area
+* or combined...
+
+```
+http://localhost:3000/location/
+http://localhost:3000/location?user=nic
+http://localhost:3000/location?group=wolves
+http://localhost:3000/location?area=[[35,5],[45,6],[49,8],[35,10],[35,5]]
+http://localhost:3000/location?user=nic&group=wolves&area=[[35,5],[45,6],[49,8],[35,10],[35,5]]
+```
+
+
+ 
 
