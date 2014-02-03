@@ -1,0 +1,13 @@
+[
+    { "loc" : { "type" : "Point" ,"coordinates" : [40,5] }, "group" : "wolves", "user": "nic" },
+    { "loc" : { "type" : "Point" ,"coordinates" : [42,6] }, "group" : "wolves", "user": "nic" },
+    { "loc" : { "type" : "Point" ,"coordinates" : [50,10] }, "group" : "wolves", "user": "nic" },
+    { "loc" : { "type" : "Point" ,"coordinates" : [65,16] }, "group" : "wolves", "user": "nic" },
+
+    { "loc" : { "type" : "Point" ,"coordinates" : [40,6] }, "group" : "wolves", "user": "mike" },
+    { "loc" : { "type" : "Point" ,"coordinates" : [42,8] }, "group" : "wolves", "user": "mike" },
+
+    { "loc" : { "type" : "Point" ,"coordinates" : [10,1] }, "group" : "ducks", "user": "nic" },
+    { "loc" : { "type" : "Point" ,"coordinates" : [39,6] }, "group" : "ducks", "user": "nic" },
+    { "loc" : { "type" : "Point" ,"coordinates" : [50,6] }, "group" : "ducks", "user": "nic" }
+]

@@ -10,33 +10,12 @@ var COLLECT_NAME='geolocations';
 var mongoClient = new MongoClient(new Server('localhost', 27017));
 
 mongoClient.open(function(err, mongoClient) {
-    db = mongoClient.db("test");
+    db = mongoClient.db("crowdtracker");
     collection = db.collection(COLLECT_NAME); 
     collection.ensureIndex({loc: "2dsphere"}, function(err, item) {
         console.log(item);
     });
 });
-
-
-
-
-
-
-
-exports.findById = function(req, res) {
-    var id = req.params.id;
-    console.log(id)
-    collection.findOne({_id:ObjectID(id)}, function(err, item) {
-        res.send(item);
-    });
-};
- 
-
-exports.findAll = function(req, res) {
-    collection.find().toArray(function(err, items) {
-        res.send(items);
-    });
-};
 
 
  
@@ -50,7 +29,7 @@ exports.addLocation = function(req, res) {
 
 
 
-exports.findByPolygon = function(req, res) {
+exports.find = function(req, res) {
     var q = 
         { "$and": [
             group(req),
