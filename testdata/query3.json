@@ -1,0 +1,6 @@
+
+{ "$and": [
+{"group":"wolves"},
+{"user":"nic"},
+{"loc":  { "$geoWithin" : {"type": "Polygon", "coordinates": [[ [0,0], [50,0], [50,30], [0,30], [0,0] ]] } }}
+]}

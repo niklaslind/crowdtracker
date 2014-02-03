@@ -9,10 +9,9 @@ app.configure(function () {
 });
  
 
-
-app.get('/location', locations.findAll);
+app.get('/location/', locations.findByPolygon);
 app.get('/location/:id', locations.findById);
-app.delete('/location/:id', locations.findById);
+app.get('/location', locations.findAll);
 app.post('/location', locations.addLocation);
 
  
