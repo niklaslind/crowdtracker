@@ -67,5 +67,8 @@ function area(req) {
         return {"loc":  { "$geoWithin" : {"type": "Polygon", "coordinates": [JSON.parse(p)] } }}
 }
 
+exports.isItFriday = function() {
+    return "yes";
+}
 
 
