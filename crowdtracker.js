@@ -13,7 +13,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 var getAssemblyPoint = function() {
-    return {lat:'59.449', long:'17.929'};
+    return {lat:59.459, long:17.939};
 }
 
 exports.getAssemblyPoint = getAssemblyPoint;

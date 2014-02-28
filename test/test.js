@@ -7,7 +7,7 @@ var crowdtracker = require('../crowdtracker');
 
 suite('crowdtracker', function() {
   test('getAssemblyPoint should return geoJson', function() {
-    assert.equal({'lat':59.449, 'long':17.929}, crowdtracker.getAssemblyPoint());
+    assert.equal({lat:59.449, long:17.929}, crowdtracker.getAssemblyPoint());
   });
   
 });
