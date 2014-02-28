@@ -9,6 +9,10 @@
         "express": "*",
         "jade": "*",
         "mongodb": "*",
-        "mocha": "*"
+        "mocha": "*",
+        "ejs": "*"
+    },
+    "engines": {
+        "node": "0.10.x"
     }
 }
