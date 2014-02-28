@@ -10,7 +10,8 @@
         "jade": "*",
         "mongodb": "*",
         "mocha": "*",
-        "ejs": "*"
+        "ejs": "*",
+        "socket.io": "*"
     },
     "engines": {
         "node": "0.10.x"
