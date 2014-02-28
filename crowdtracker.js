@@ -20,8 +20,8 @@ exports.getAssemblyPoint = getAssemblyPoint;
 
 
 
-app.get('/assemblyPoint', function(req, res){
-    res.render('assemblyPoint', getAssemblyPoint());
+app.get('/', function(req, res){
+    res.render('index', getAssemblyPoint());
 //     res.sendfile(__dirname + '/views/assemblyPoint.html')
 })
 
