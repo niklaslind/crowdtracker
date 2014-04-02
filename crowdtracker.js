@@ -1,24 +1,20 @@
 //HTML server
-var express = require('express');
-var io = require('socket.io');
-var http = require('http');
-//var app = express();
-var app = express.createServer();
+var express = require('express.io');
+var app = express();
+app.http().io();
 
-app.configure(function () {
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-}); 
+app.use("/public", express.static(__dirname + "/public"));
 
 app.engine('html', require('ejs').renderFile);
 
 app.set('view engine', 'html');
 
+
 var getAssemblyPoint = function() {
     return {lat:59.459, long:17.939};
 }
 
-exports.getAssemblyPoint = getAssemblyPoint;
+//exports.getAssemblyPoint = getAssemblyPoint;
 // 
 
 
@@ -35,25 +31,15 @@ var port = Number(process.env.PORT || 3000);
 // });
 
 //Socket server
-var server = http.createServer(app).listen(port);
-var sio = io.listen(server);
+app.listen(port);
 
-console.log('connecting socket');
-
-
-sio.on('connection', function (socket) {
-    console.log('Got connect');
-    
-    socket.emit('news', { hello: 'world' });
-  
-  socket.on('message', function (data) {
-    console.log('message:' + data);
-  });
-  socket.on('position', function (data) {
-    console.log('position:' + data);
-  });
-
-
+app.io.route('crowdee', {
+    join: function(req) {
+        console.log("crowdee.join" + JSON.stringify(req.data));
+        req.io.join("da room");
+    },
+    updatePosition: function(req) {
+        console.log("crowdee.updatePosition" + JSON.stringify(req.data));
+        req.io.room("da room").broadcast('positionUpdate', req.data);
+    }
 });
-
-

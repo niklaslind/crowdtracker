@@ -1,74 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>crowdtracker - assembly point</title>
-</head>
-<body>
-<input id='url' value='ws://localhost:3000'/>
-<button id='connect'>Connect</button>
-
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<div style="overflow:hidden;height:500px;width:600px;">
-    <div id="gmap_canvas" style="height:500px;width:600px;"></div>
-    <a class="google-map-data" href="http://gefaellt-mir-button.com" id="get-map-data">gefaellt mir button</a>
-        <iframe src="http://www.embed-google-map.com/map-embed.php"></iframe>
-    <a class="google-map-data" href="http://www.stromleo.de" id="get-map-data">check hier</a>
-    </div>
-    <script type="text/javascript"> 
-        
-        function init_map(){
-            var myOptions = {zoom:14,center:new google.maps.LatLng(<%= lat %>, <%= long %>),mapTypeId: google.maps.MapTypeId.ROADMAP};
-            map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
-            marker = createMarker(<%= lat %>, <%= long %>, 'https://maps.google.com/mapfiles/kml/shapes/schools_maps.png');
-            //marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(<%= lat %>, <%= long %>)});
+    <head>
+        <title>crowdtracker - assembly point</title>
+        <style>
+          html, body, #map-canvas {
+            height: 80%;
+            margin: 0px;
+            padding: 0px
+          }
+        </style>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="public/map.js"></script>
+        <script>
+        function initialize() {
+            initMap(<%= lat %>, <%= long %>);
+            setInterval(getMyPosition, 1000);
+            initPositionListener();
         }
-            
-        google.maps.event.addDomListener(window, 'load', init_map);
-                
-    </script>
-
-<!--<script src="http://cdn.socket.io/stable/socket.io.js"></script>-->
-
-
-<script type="text/javascript">
-    //get current position
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(createMyMarker);
-    }else{
-        alert('Your browser does not support geolocation!');
-    }
-
-function createMyMarker(pos) {
-    var lat = pos.coords.latitude;
-    var long = pos.coords.longitude;
-    createMarker(lat, long, 'http://google-maps-icons.googlecode.com/files/sailboat-tourism.png')
-}
-function createMarker(lat, long, icon){
-    ourMarker = new google.maps.Marker({
-        map: map,
-        position: new google.maps.LatLng(lat ,long ),
-        icon: icon
-        //icon: 'http://google-maps-icons.googlecode.com/files/sailboat-tourism.png'
-    });
-
-};
-</script>
-
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io.connect('http://localhost:3000');
-  socket.on('news', function (data) {
-    console.log(data);
-    var f = function(pos) {
-    var latitude = pos.coords.latitude;
-    var longitude = pos.coords.longitude;
-        //var posJson = {lat: latitude, long: longitude};
-        socket.emit('position', JSON.stringify(pos));
-        };
-     navigator.geolocation.getCurrentPosition( f );
-
-    
-  });
-</script>
-</body>
+        google.maps.event.addDomListener(window, 'load', initialize);  
+        </script>
+    </head>
+    <body>
+        <input type="text" id="username"></input>
+        <button onclick="join(1)">Join</button>
+        <div id="map-canvas"></div>
+    </body>
 </html>

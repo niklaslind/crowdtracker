@@ -11,7 +11,8 @@
         "mongodb": "*",
         "mocha": "*",
         "ejs": "*",
-        "socket.io": "*"
+        "socket.io": "*",
+        "express.io": "*"
     },
     "engines": {
         "node": "0.10.x"
