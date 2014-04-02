@@ -4,7 +4,8 @@
         <title>crowdtracker - assembly point</title>
         <style>
           html, body, #map-canvas {
-            height: 80%;
+            height: 70%;
+            width: 70%;
             margin: 0px;
             padding: 0px
           }
@@ -35,8 +36,10 @@
         </script>
     </head>
     <body>
-        <input type="text" id="username"></input>
-        <button onclick="join()">Join</button>
+        <div>
+            <input type="text" id="username"></input>
+            <button onclick="join()">Join</button>
+        </div>    
         <div id="map-canvas"></div>
         <textarea id="chatWindow" rows="10" cols="100"></textarea>
         <div>
