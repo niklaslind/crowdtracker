@@ -79,7 +79,7 @@ function createMarker(lat, long, icon, username){
 var temp = 0;
 function showMyPosition(geoPos) {
 	newPos = new google.maps.LatLng(geoPos.coords.latitude+temp, geoPos.coords.longitude);
-    temp = temp + 0.001;
+    //temp = temp + 0.001;
     if (myMarker){
 	    myMarker.setPosition(newPos);
     }
