@@ -3,6 +3,8 @@ var myMarker;
 var crowdees  = {};
 var user;
 var infoWindow;
+var trace = {};
+var myName = 'myself';
 
 function initMap(lat, long) {
   var mapOptions = {
@@ -12,9 +14,11 @@ function initMap(lat, long) {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
   showAssemblyPoint(lat, long);
-  myMarker = createMarker(lat, long, 'http://google-maps-icons.googlecode.com/files/sailboat-tourism.png', 'myself');
+  myMarker = createMarker(lat, long, 'http://google-maps-icons.googlecode.com/files/sailboat-tourism.png', myName);
   io = io.connect();
   infowindow = new google.maps.InfoWindow(); 
+  google.maps.event.trigger(map, 'resize');
+  trace[myName] = [];
 }
 
 function join(){
@@ -79,10 +83,11 @@ function showMyPosition(geoPos) {
     if (myMarker){
 	    myMarker.setPosition(newPos);
     }
-      io.emit('crowdee:updatePosition', 
-      		{	user: user,
-      			lat: newPos.lat(),
-      			long: newPos.lng()}); 
+	io.emit('crowdee:updatePosition', 
+			{	user: user,
+				lat: newPos.lat(),
+				long: newPos.lng()}); 
+	updatePath(myName, newPos, '#00FF00');
 }
 
 function getMyPosition() {
@@ -99,10 +104,26 @@ function updateCrowdeeMarker(name, lat,long) {
 	if (!marker) {
 		marker = createMarker(lat, long, "http://maps.google.com/mapfiles/ms/micons/bar.png", name);
 		crowdees[name] = marker
-	} else {
-		pos = new google.maps.LatLng(lat, long);
-		marker.setPosition(pos);
-	}
+		trace[name] = [];
+	} 
+	var pos = new google.maps.LatLng(lat, long);
+	marker.setPosition(pos);
+	updatePath(name, pos, '#FF0000');
+}
+
+function updatePath(name, pos, color) {
+	trace[name].push(pos);
+
+	var footPath = new google.maps.Polyline({
+	    path: trace[name],
+	    geodesic: true,
+	    strokeColor: color,
+	    strokeOpacity: 1.0,
+	    strokeWeight: 2
+  	});
+
+ 	footPath.setMap(map);
+
 }
 
 function sendChatMessage(){
