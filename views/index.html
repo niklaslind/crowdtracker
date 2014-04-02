@@ -8,6 +8,18 @@
             margin: 0px;
             padding: 0px
           }
+
+         .labels {
+             color: red;
+             background-color: white;
+             font-family: "Lucida Grande", "Arial", sans-serif;
+             font-size: 10px;
+             font-weight: bold;
+             text-align: center;
+             width: 40px;
+             border: 2px solid black;
+             white-space: nowrap;
+         }
         </style>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
         <script src="/socket.io/socket.io.js"></script>
@@ -17,13 +29,19 @@
             initMap(<%= lat %>, <%= long %>);
             setInterval(getMyPosition, 1000);
             initPositionListener();
+            initChatListener();
         }
         google.maps.event.addDomListener(window, 'load', initialize);  
         </script>
     </head>
     <body>
         <input type="text" id="username"></input>
-        <button onclick="join(1)">Join</button>
+        <button onclick="join()">Join</button>
         <div id="map-canvas"></div>
+        <textarea id="chatWindow" rows="10" cols="100"></textarea>
+        <div>
+            <input type="text" id="chatMessage"></input>
+            <button onclick="sendChatMessage()">Send</button>
+        </div>
     </body>
 </html>

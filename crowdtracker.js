@@ -41,5 +41,9 @@ app.io.route('crowdee', {
     updatePosition: function(req) {
         console.log("crowdee.updatePosition" + JSON.stringify(req.data));
         req.io.room("da room").broadcast('positionUpdate', req.data);
+    },
+    chat: function(req) {
+        console.log("crowdee.chat" + JSON.stringify(req.data));
+        app.io.room("da room").broadcast('chatUpdate', req.data);
     }
 });
