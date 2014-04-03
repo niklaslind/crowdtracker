@@ -138,5 +138,6 @@ function sendChatMessage(){
 
 function updateChat(sender, message){
  	document.getElementById("chatWindow").value = document.getElementById("chatWindow").value + "\n" +  sender + ": " + message;
+ 	document.getElementById("chatWindow").scrollTop =    document.getElementById("chatWindow").scrollHeight;
 }
 
