@@ -28,7 +28,9 @@
         <script>
         function initialize() {
             initMap(<%= lat %>, <%= long %>);
-            setInterval(getMyPosition, 1000);
+            //setInterval(getMyPosition, 1000);
+            getMyPosition();
+            watchMyPosition();
             initPositionListener();
             initChatListener();
         }

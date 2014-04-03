@@ -76,6 +76,10 @@ function createMarker(lat, long, icon, username){
 
 };
 
+function watchMyPosition(){
+	navigator.geolocation.watchPosition(showMyPosition);
+}
+
 var temp = 0;
 function showMyPosition(geoPos) {
 	newPos = new google.maps.LatLng(geoPos.coords.latitude+temp, geoPos.coords.longitude);
