@@ -86,6 +86,10 @@ function showMyPosition(geoPos) {
     //temp = temp + 0.001;
     if (myMarker){
 	    myMarker.setPosition(newPos);
+	    var keepCentered = document.getElementById("keepCentered").checked;
+	    if (keepCentered){
+	    	map.setCenter(newPos);
+	    }
     }
 	io.emit('crowdee:updatePosition', 
 			{	user: user,
