@@ -40,6 +40,12 @@ function initChatListener() {
 	})	
 } 
 
+function initReqPositionListener() {
+    io.on('reqPosition', function() {
+	    console.log("got posRequest");
+	    getMyPosition(); // Call to trigger an update of the position (and send to server)
+		})
+}
 
 function showAssemblyPoint(lat, long) {
 	createMarker(lat, long, 'https://maps.google.com/mapfiles/kml/shapes/schools_maps.png', 'assembly point')

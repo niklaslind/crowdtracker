@@ -37,6 +37,8 @@ app.io.route('crowdee', {
     join: function(req) {
         console.log("crowdee.join" + JSON.stringify(req.data));
         req.io.join("da room");
+        console.log("request positions");
+        app.io.room("da room").broadcast('reqPosition'); // Requeire the position from everyone else
     },
     updatePosition: function(req) {
         console.log("crowdee.updatePosition" + JSON.stringify(req.data));
