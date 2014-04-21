@@ -24,6 +24,7 @@ function initMap(lat, long) {
 function join(){
 	user = document.getElementById("username").value;
   	io.emit('crowdee:join', {user:user}); 
+	document.getElementById("connectStatus").style.display = "block";
 }
 
 function initPositionListener() {
@@ -144,10 +145,12 @@ function sendChatMessage(){
 	var message = document.getElementById("chatMessage").value;
   	io.emit('crowdee:chat', {user:user, message: message}); 
   	document.getElementById("chatMessage").value = "";
+  	document.getElementById("chatMessage").focus();
 }
 
 function updateChat(sender, message){
  	document.getElementById("chatWindow").value = document.getElementById("chatWindow").value + "\n" +  sender + ": " + message;
  	document.getElementById("chatWindow").scrollTop =    document.getElementById("chatWindow").scrollHeight;
+ 	var player = document.getElementById("player");//.play();
 }
 
